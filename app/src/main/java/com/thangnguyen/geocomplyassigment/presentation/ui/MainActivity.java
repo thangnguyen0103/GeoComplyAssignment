@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
+import android.widget.Scroller;
 import android.widget.Toast;
 
 
@@ -24,6 +26,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        binding.edComment.setScroller(new Scroller(this));
+        binding.edComment.setVerticalScrollBarEnabled(true);
+        binding.edComment.setMovementMethod(new ScrollingMovementMethod());
+
         mainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
 
         binding.btnSubmit.setOnClickListener(view -> {
